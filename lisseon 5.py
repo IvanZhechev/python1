@@ -1,23 +1,22 @@
 import string
 import keyword
 
-
 def is_valid_variable_name(name):
     if name in keyword.kwlist:
         return False
-
-    if not (name[0].isalpha() or name[0] == "_"):
+    if name[0].isdigit():
         return False
-
-    if name.count("_") > 1:
+    if " " in name or name.count("_") > 1:
         return False
-
     for char in name:
-        if char.isupper() or char in string.punctuation.replace("_", "") or char.isspace():
+        if char in string.punctuation and char != "_":
             return False
+        if char.isupper():
+            return False
+
     return True
 
+examples = ["_", "__", "my_new_value", "get_Value", "getValue", "3m", "m3", "assert", "assert_exception"]
 
-# Приклад використання
-variable_name = input("Введіть ім'я змінної: ")
-print(is_valid_variable_name(variable_name))
+results = {example: is_valid_variable_name(example) for example in examples}
+results
