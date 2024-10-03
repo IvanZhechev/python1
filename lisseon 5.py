@@ -15,7 +15,6 @@ def is_valid_variable_name(name):
             return False
 
     return True
-
 examples = ["_", "__", "my_new_value", "get_Value", "getValue", "3m", "m3", "assert", "assert_exception"]
 
 results = {example: is_valid_variable_name(example) for example in examples}
